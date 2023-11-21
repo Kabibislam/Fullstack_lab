@@ -1,0 +1,35 @@
+Voting application
+import React, { useState } from 'react';
+
+const VotingApp = () => {
+  const [options, setOptions] = useState([
+    { id: 1, name: 'Option 1', votes: 0 },
+    { id: 2, name: 'Option 2', votes: 0 },
+    { id: 3, name: 'Option 3', votes: 0 },
+  ]);
+
+  const handleVote = (optionId) => {
+    setOptions((prevOptions) =>
+      prevOptions.map((option) =>
+        option.id === optionId ? { ...option, votes: option.votes + 1 } : option
+      )
+    );
+  };
+
+  return (
+    <div>
+      <h1>Voting App</h1>
+      <ul>
+        {options.map((option) => (
+          <li key={option.id}>
+            {option.name} - Votes: {option.votes}
+            <button onClick={() => handleVote(option.id)}>Vote</button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+
+};
+
+export default VotingApp;
