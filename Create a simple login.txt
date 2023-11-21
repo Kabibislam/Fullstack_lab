@@ -1,0 +1,50 @@
+Create a simple login
+import React, { useState } from 'react';
+const LoginForm = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [loggedIn, setLoggedIn] = useState(false);
+  const handleLogin = () => {
+    // Simulating a login process, you can replace this with actual authentication logic
+    if (username === 'user' && password === 'password') {
+      setLoggedIn(true);
+    } else {
+      alert('Invalid username or password');
+    }
+  };
+  return (
+    <div>
+      {loggedIn ? (
+        <div>
+          <h2>Welcome, {username}!</h2>
+          <button onClick={() => setLoggedIn(false)}>Logout</button>
+        </div>
+      ) : (
+        <form>
+          <label>
+            Username:
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </label>
+          <br />
+          <label>
+            Password:
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </label>
+          <br />
+          <button type="button" onClick={handleLogin}>
+            Login
+          </button>
+        </form>
+      )}
+    </div>
+  );
+};
+export default LoginForm;
