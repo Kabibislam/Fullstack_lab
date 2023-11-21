@@ -1,0 +1,66 @@
+
+import React, { useState } from 'react';
+const Calculator = () => {
+  const [input, setInput] = useState('');
+  const [result, setResult] = useState('');
+  const handleClick = (value) => {
+    if (value === '=') {
+      try {
+        setResult(eval(input).toString());
+      } catch (error) {
+        setResult('Error');
+      }
+    } else if (value === 'C') {
+      setInput('');
+      setResult('');
+    } else {
+      setInput(input + value);
+    }
+  };
+  const buttonStyle = {
+    padding: '10px',
+    fontSize: '1.2em',
+    cursor: 'pointer',
+  };
+  const clearButtonStyle = {
+    width: '100%',
+    backgroundColor: '#f44336',
+    color: 'white',
+    border: 'none',
+    padding: '10px',
+    fontSize: '1.2em',
+    cursor: 'pointer',
+  };
+  const resultStyle = {
+    marginTop: '10px',
+    fontSize: '1.5em',
+    fontWeight: 'bold',
+    color: '#4caf50',
+  };
+  return (
+    <div style={{ maxWidth: '300px', margin: '50px auto', padding: '20px', border: '1px solid #ccc', borderRadius: '5px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)', textAlign: 'center' }}>
+      <input type="text" value={input} readOnly style={{ width: '100%', marginBottom: '10px', padding: '10px', fontSize: '1.5em' }} />
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '10px' }}>
+        <button style={buttonStyle} onClick={() => handleClick('7')}>7</button>
+        <button style={buttonStyle} onClick={() => handleClick('8')}>8</button>
+        <button style={buttonStyle} onClick={() => handleClick('9')}>9</button>
+        <button style={buttonStyle} onClick={() => handleClick('/')}>/</button>
+        <button style={buttonStyle} onClick={() => handleClick('4')}>4</button>
+        <button style={buttonStyle} onClick={() => handleClick('5')}>5</button>
+        <button style={buttonStyle} onClick={() => handleClick('6')}>6</button>
+        <button style={buttonStyle} onClick={() => handleClick('*')}>*</button>
+        <button style={buttonStyle} onClick={() => handleClick('1')}>1</button>
+        <button style={buttonStyle} onClick={() => handleClick('2')}>2</button>
+        <button style={buttonStyle} onClick={() => handleClick('3')}>3</button>
+        <button style={buttonStyle} onClick={() => handleClick('-')}>-</button>
+        <button style={buttonStyle} onClick={() => handleClick('0')}>0</button>
+        <button style={buttonStyle} onClick={() => handleClick('.')}>.</button>
+        <button style={buttonStyle} onClick={() => handleClick('=')}>=</button>
+        <button style={buttonStyle} onClick={() => handleClick('+')}>+</button>
+      </div>
+      <button style={clearButtonStyle} onClick={() => handleClick('C')}>C</button>
+      <div style={resultStyle}>{result}</div>
+    </div>
+  );
+};
+export default Calculator;
